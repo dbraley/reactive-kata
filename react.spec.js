@@ -1,7 +1,6 @@
 const {InputCell, ComputeCell, CallbackCell} = require('./react')
 
 describe('React module', () => {
-
   test('accepts input', () => {
     const inputCell = new InputCell(10)
     expect(inputCell.value).toEqual(10)
@@ -43,7 +42,6 @@ describe('React module', () => {
     inputCell.setValue(3)
     expect(computeCell.value).toEqual(4)
   })
-
 
   xtest('compute cells can depend on other compute cells', () => {
     const inputCell = new InputCell(1)
@@ -98,7 +96,6 @@ describe('React module', () => {
     inputCell.setValue(4)
     expect(callback.values).toEqual([222])
   })
-
 
   xtest('callbacks can be added and removed', () => {
     const inputCell = new InputCell(1)
@@ -196,7 +193,6 @@ describe('React module', () => {
       [plusOne, minusOne],
       inputs => inputs[0].value - inputs[1].value
     )
-
 
     const callback = new CallbackCell(cell => cell.value)
     alwaysTwo.addCallback(callback)

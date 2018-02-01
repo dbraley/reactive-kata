@@ -1,11 +1,10 @@
 class InputCell {
-
   constructor (value) {
-    this.setValue(value);
+    this.setValue(value)
   }
 
-  setValue(value) {
-    this.value = value;
+  setValue (value) {
+    this.value = value
   }
 }
 
@@ -15,12 +14,12 @@ class CallbackCell {
 
 class ComputeCell {
   constructor (inputCellArray, cb) {
-  if (inputCellArray.length === 1)
-    this.value = 4;
-  else
-    this.value = cb(inputCellArray);
+    if (inputCellArray.length === 1) {
+      this.value = 4
+    } else {
+      this.value = cb(inputCellArray)
+    }
   }
 }
 
-
-module.exports = {InputCell, ComputeCell, CallbackCell};
+module.exports = {InputCell, ComputeCell, CallbackCell}

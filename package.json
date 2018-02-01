@@ -9,8 +9,11 @@
     "url": "git+https://github.com/matthewmorgan/reactive-kata.git"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.16.0",
     "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-react": "^7.0.1",
