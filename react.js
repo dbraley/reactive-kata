@@ -14,7 +14,7 @@ class CallbackCell {
 
 class ComputeCell {
   constructor (inputCellArray, cb) {
-    this.value = 2
+    this.value = inputCellArray[0].value + 1
   }
 }
 

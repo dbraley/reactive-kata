@@ -19,6 +19,13 @@ describe('React module', () => {
     expect(computeCell.value).toEqual(2)
   })
 
+  test('allows compute cell to use input cell value', () => {
+    const inputCell = new InputCell(2)
+    const fn = inputCells => inputCells[0].value + 1
+    const computeCell = new ComputeCell([inputCell], fn)
+    expect(computeCell.value).toEqual(3)
+  })
+
   xtest('compute cell takes inputs in correct order', () => {
     const inputCells = [
       new InputCell(1),
