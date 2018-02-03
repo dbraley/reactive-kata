@@ -1,16 +1,16 @@
 class InputCell {
   constructor (value) {
-    this.computeCell = []
+    this.listeners = []
     this.setValue(value)
   }
 
   setValue (value) {
     this.value = value
-    this.computeCell.forEach(computeCell => computeCell.recompute())
+    this.listeners.forEach(computeCell => computeCell.recompute())
   }
 
-  setComputeCell (computeCell) {
-    this.computeCell.push(computeCell)
+  addListener (computeCell) {
+    this.listeners.push(computeCell)
   }
 }
 
@@ -20,7 +20,8 @@ class CallbackCell {
 
 class ComputeCell {
   constructor (inputCellArray, cb) {
-    inputCellArray.forEach(inputCell => inputCell.setComputeCell(this))
+    this.listeners = []
+    inputCellArray.forEach(inputCell => inputCell.addListener(this))
     this.inputCellArray = inputCellArray
     this.cb = cb
     this.value = cb(inputCellArray)
@@ -28,6 +29,11 @@ class ComputeCell {
 
   recompute () {
     this.value = this.cb(this.inputCellArray)
+    this.listeners.forEach(listener => listener.recompute())
+  }
+
+  addListener (computeCell) {
+    this.listeners.push(computeCell)
   }
 }
 
