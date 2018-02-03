@@ -1,16 +1,26 @@
-class InputCell {
-  constructor (value) {
+class ReactiveCell {
+  constructor () {
     this.listeners = []
+  }
+
+  addListener (computeCell) {
+    this.listeners.push(computeCell)
+  }
+
+  alertListeners () {
+    this.listeners.forEach(listener => listener.alert())
+  }
+}
+
+class InputCell extends ReactiveCell {
+  constructor (value) {
+    super()
     this.setValue(value)
   }
 
   setValue (value) {
     this.value = value
-    this.listeners.forEach(computeCell => computeCell.recompute())
-  }
-
-  addListener (computeCell) {
-    this.listeners.push(computeCell)
+    this.alertListeners()
   }
 }
 
@@ -18,22 +28,18 @@ class CallbackCell {
 
 }
 
-class ComputeCell {
+class ComputeCell extends ReactiveCell {
   constructor (inputCellArray, cb) {
-    this.listeners = []
+    super()
     inputCellArray.forEach(inputCell => inputCell.addListener(this))
     this.inputCellArray = inputCellArray
     this.cb = cb
     this.value = cb(inputCellArray)
   }
 
-  recompute () {
+  alert () {
     this.value = this.cb(this.inputCellArray)
-    this.listeners.forEach(listener => listener.recompute())
-  }
-
-  addListener (computeCell) {
-    this.listeners.push(computeCell)
+    this.alertListeners()
   }
 }
 
