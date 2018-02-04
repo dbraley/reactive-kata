@@ -76,8 +76,8 @@ describe('React module', () => {
 
     expect(sum.value).toEqual(32)
 
-    // inputCell.setValue(3)
-    // expect(sum.value).toEqual(96)
+    inputCell.setValue(3)
+    expect(sum.value).toEqual(96)
   })
 
   xtest('compute cells fire callbacks', () => {
