@@ -25,7 +25,10 @@ class InputCell extends ReactiveCell {
 }
 
 class CallbackCell {
-
+  constructor (fn) {
+    this.fn = fn
+    this.values = []
+  }
 }
 
 class ComputeCell extends ReactiveCell {

@@ -80,6 +80,11 @@ describe('React module', () => {
     expect(sum.value).toEqual(96)
   })
 
+  test('has defined CallbackCell', () => {
+    const callback = new CallbackCell(cell => cell.value)
+    expect(callback.values).toEqual([])
+  })
+
   xtest('compute cells fire callbacks', () => {
     const inputCell = new InputCell(1)
     const output = new ComputeCell(
