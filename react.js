@@ -29,6 +29,10 @@ class CallbackCell {
     this.fn = fn
     this.values = []
   }
+
+  apply (cell) {
+    this.values.push(this.fn(cell))
+  }
 }
 
 class ComputeCell extends ReactiveCell {

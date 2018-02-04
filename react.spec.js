@@ -85,6 +85,14 @@ describe('React module', () => {
     expect(callback.values).toEqual([])
   })
 
+  test('has CallbackCell which stores values', () => {
+    const callback = new CallbackCell(cell => cell.value)
+    callback.apply(new InputCell(1))
+    callback.apply(new InputCell(2))
+
+    expect(callback.values).toEqual([1, 2])
+  })
+
   xtest('compute cells fire callbacks', () => {
     const inputCell = new InputCell(1)
     const output = new ComputeCell(
