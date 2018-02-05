@@ -51,6 +51,10 @@ class ComputeCell extends ReactiveCell {
       this.alertListeners()
     }
   }
+
+  removeCallback (callback) {
+    this.listeners = this.listeners.filter(c => c !== callback);
+  }
 }
 
 module.exports = {InputCell, ComputeCell, CallbackCell}
