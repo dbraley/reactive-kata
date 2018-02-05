@@ -26,7 +26,7 @@ describe('React module', () => {
     expect(computeCell.value).toEqual(3)
   })
 
-  test('allows compute cell to apply provided function', () => {
+  test('allows compute cell to alert provided function', () => {
     const inputCell = new InputCell(1)
     const fn = inputCells => inputCells[0].value + 2
     const computeCell = new ComputeCell([inputCell], fn)
@@ -87,8 +87,8 @@ describe('React module', () => {
 
   test('has CallbackCell which stores values', () => {
     const callback = new CallbackCell(cell => cell.value)
-    callback.apply(new InputCell(1))
-    callback.apply(new InputCell(2))
+    callback.alert(new InputCell(1))
+    callback.alert(new InputCell(2))
 
     expect(callback.values).toEqual([1, 2])
   })
@@ -101,7 +101,7 @@ describe('React module', () => {
     )
 
     const callback = new CallbackCell(cell => cell.value)
-    output.addCallback(callback)
+    output.addListener(callback)
 
     inputCell.setValue(3)
     expect(callback.values).toEqual([4])
@@ -115,7 +115,7 @@ describe('React module', () => {
     )
 
     const callback = new CallbackCell(cell => cell.value)
-    output.addCallback(callback)
+    output.addListener(callback)
 
     inputCell.setValue(2)
     expect(callback.values).toEqual([])
@@ -134,15 +134,15 @@ describe('React module', () => {
     const callback1 = new CallbackCell(cell => cell.value)
     const callback2 = new CallbackCell(cell => cell.value)
 
-    output.addCallback(callback1)
-    output.addCallback(callback2)
+    output.addListener(callback1)
+    output.addListener(callback2)
 
     inputCell.setValue(31)
 
     output.removeCallback(callback1)
 
     const callback3 = new CallbackCell(cell => cell.value)
-    output.addCallback(callback3)
+    output.addListener(callback3)
 
     inputCell.setValue(41)
 
@@ -161,8 +161,8 @@ describe('React module', () => {
     const callback1 = new CallbackCell(cell => cell.value)
     const callback2 = new CallbackCell(cell => cell.value)
 
-    output.addCallback(callback1)
-    output.addCallback(callback2)
+    output.addListener(callback1)
+    output.addListener(callback2)
 
     output.removeCallback(callback1)
     output.removeCallback(callback1)
@@ -197,7 +197,7 @@ describe('React module', () => {
     )
 
     const callback1 = new CallbackCell(cell => cell.value)
-    output.addCallback(callback1)
+    output.addListener(callback1)
 
     inputCell.setValue(4)
 
@@ -222,7 +222,7 @@ describe('React module', () => {
     )
 
     const callback = new CallbackCell(cell => cell.value)
-    alwaysTwo.addCallback(callback)
+    alwaysTwo.addListener(callback)
 
     inputCell.setValue(2)
     inputCell.setValue(3)

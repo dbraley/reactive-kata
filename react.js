@@ -8,7 +8,7 @@ class ReactiveCell {
   }
 
   alertListeners () {
-    this.listeners.forEach(listener => listener.alert())
+    this.listeners.forEach(listener => listener.alert(this))
   }
 }
 
@@ -30,7 +30,7 @@ class CallbackCell {
     this.values = []
   }
 
-  apply (cell) {
+  alert (cell) {
     this.values.push(this.fn(cell))
   }
 }
@@ -38,7 +38,6 @@ class CallbackCell {
 class ComputeCell extends ReactiveCell {
   constructor (inputCellArray, cb) {
     super()
-    this.callbackCells = []
     inputCellArray.forEach(inputCell => inputCell.addListener(this))
     this.inputCellArray = inputCellArray
     this.cb = cb
@@ -48,11 +47,6 @@ class ComputeCell extends ReactiveCell {
   alert () {
     this.value = this.cb(this.inputCellArray)
     this.alertListeners()
-    this.callbackCells.forEach(callbackCell => callbackCell.apply(this))
-  }
-
-  addCallback (callbackCell) {
-    this.callbackCells.push(callbackCell)
   }
 }
 
