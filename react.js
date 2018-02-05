@@ -45,8 +45,11 @@ class ComputeCell extends ReactiveCell {
   }
 
   alert () {
-    this.value = this.cb(this.inputCellArray)
-    this.alertListeners()
+    const newvalue = this.cb(this.inputCellArray)
+    if (newvalue !== this.value) {
+      this.value = newvalue
+      this.alertListeners()
+    }
   }
 }
 
