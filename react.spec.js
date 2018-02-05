@@ -139,7 +139,7 @@ describe('React module', () => {
 
     inputCell.setValue(31)
 
-    output.removeCallback(callback1)
+    output.removeListener(callback1)
 
     const callback3 = new CallbackCell(cell => cell.value)
     output.addListener(callback3)
@@ -164,9 +164,9 @@ describe('React module', () => {
     output.addListener(callback1)
     output.addListener(callback2)
 
-    output.removeCallback(callback1)
-    output.removeCallback(callback1)
-    output.removeCallback(callback1)
+    output.removeListener(callback1)
+    output.removeListener(callback1)
+    output.removeListener(callback1)
 
     inputCell.setValue(2)
 

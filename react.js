@@ -7,6 +7,10 @@ class ReactiveCell {
     this.listeners.push(computeCell)
   }
 
+  removeListener (callback) {
+    this.listeners = this.listeners.filter(c => c !== callback);
+  }
+
   alertListeners () {
     this.listeners.forEach(listener => listener.alert(this))
   }
@@ -50,10 +54,6 @@ class ComputeCell extends ReactiveCell {
       this.value = newvalue
       this.alertListeners()
     }
-  }
-
-  removeCallback (callback) {
-    this.listeners = this.listeners.filter(c => c !== callback);
   }
 }
 
