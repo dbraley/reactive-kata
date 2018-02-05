@@ -93,7 +93,7 @@ describe('React module', () => {
     expect(callback.values).toEqual([1, 2])
   })
 
-  xtest('compute cells fire callbacks', () => {
+  test('compute cells fire callbacks', () => {
     const inputCell = new InputCell(1)
     const output = new ComputeCell(
       [inputCell],
