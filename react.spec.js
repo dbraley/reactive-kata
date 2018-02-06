@@ -231,4 +231,15 @@ describe('React module', () => {
 
     expect(callback.values).toEqual([])
   })
+
+  test('setting a input cell value without changing it does not trigger a callback', () => {
+    const inputCell = new InputCell(1)
+    const callbackCell = new CallbackCell(cell => cell.getValue())
+
+    inputCell.addListener(callbackCell)
+
+    inputCell.setValue(1)
+
+    expect(callbackCell.values).toEqual([])
+  })
 })

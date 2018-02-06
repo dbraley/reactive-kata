@@ -3,8 +3,8 @@ class ReactiveCell {
     this.listeners = []
   }
 
-  addListener (computeCell) {
-    this.listeners.push(computeCell)
+  addListener (listenerCell) {
+    this.listeners.push(listenerCell)
   }
 
   removeListener (callback) {
@@ -23,8 +23,10 @@ class InputCell extends ReactiveCell {
   }
 
   setValue (value) {
-    this.value = value
-    this.alertListeners()
+    if (value !== this.value) {
+      this.value = value
+      this.alertListeners()
+    }
   }
 
   getValue () {
@@ -53,9 +55,9 @@ class ComputeCell extends ReactiveCell {
   }
 
   alert () {
-    const newvalue = this.cb(this.inputCellArray)
-    if (newvalue !== this.value) {
-      this.value = newvalue
+    const newValue = this.cb(this.inputCellArray)
+    if (newValue !== this.value) {
+      this.value = newValue
       this.alertListeners()
     }
   }
