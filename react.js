@@ -26,6 +26,10 @@ class InputCell extends ReactiveCell {
     this.value = value
     this.alertListeners()
   }
+
+  getValue () {
+    return this.value
+  }
 }
 
 class CallbackCell {
@@ -54,6 +58,10 @@ class ComputeCell extends ReactiveCell {
       this.value = newvalue
       this.alertListeners()
     }
+  }
+
+  getValue () {
+    return this.cb(this.inputCellArray)
   }
 }
 
